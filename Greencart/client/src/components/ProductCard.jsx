@@ -1,16 +1,15 @@
 import React from "react";
 import { assets } from "../assets/assets";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../context/appContext";
 
 
 const ProductCard = ({product}) => {
-    const [count, setCount] = React.useState(0);
     const {currency,addToCart,updateCartItems,removeFromCart,cartItems,navigate} = useAppContext();
 
     
 
     return product && (
-        <div className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white max-w-54">
+        <div onClick={()=> {navigate(`/products/${product.category.toLowerCase()}/${product._id}`); scrollTo(0,0)}} className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white max-w-54">
             <div className="group cursor-pointer flex items-center justify-center px-2">
                 <img className="group-hover:scale-105 transition max-w-26 md:max-w-36" src={product.image[0]} alt={product.name} />
             </div>
