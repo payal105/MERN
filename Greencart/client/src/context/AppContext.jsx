@@ -144,7 +144,7 @@ const getCartCount = () => {
         updateCart();
     }, [cartItems])
 
-    const value = { navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItems, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartCount, getCartAmount, axios, fetchProducts, cartItems,fetchUser,setCartItems };
+    const value = { navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItems, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartCount, getCartAmount, axios, fetchProducts,fetchUser,setCartItems };
 
     return <AppContext.Provider value={value}>
         {children}
