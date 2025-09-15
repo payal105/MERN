@@ -32,7 +32,9 @@ const Login = () => {
             if(data.success){
                 navigate('/');
                 setUser(data.user);
+                if(user){
                 fetchUser();
+                }
                 setShowUserLogin(false);
             }else{
                 toast.error(data.message)
