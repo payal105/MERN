@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/AppContext'
+import toast from 'react-hot-toast';
 
 
 
@@ -9,16 +10,44 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const {setShowUserLogin,setUser} = useAppContext();
+    const {setShowUserLogin,setUser,navigate,axios,getCartCount,cartItems,user,fetchUser} = useAppContext();
 
     const onSubmitHandler = async (event) => {
-        event.preventDefault();
-        setUser({
-            email: "payal@test.dev",
-            name: "Payal Adhikary"
-        })
-        setShowUserLogin(false);
+        // event.preventDefault();
+        // setUser({
+        //     email: "payal@test.dev",
+        //     name: "Payal Adhikary"
+        // })
+        // setShowUserLogin(false);
+        try {
+            event.preventDefault();
+
+            const {data} = await axios.post(`/api/user/${state}`,{
+                name,
+                email,
+                password
+            
+            })
+
+            if(data.success){
+                navigate('/');
+                setUser(data.user);
+                fetchUser();
+                setShowUserLogin(false);
+            }else{
+                toast.error(data.message)
+            }
+            setShowUserLogin(false);
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
+
+   
+
+    useEffect(() => {
+       getCartCount();
+    }, [cartItems])
 
     return (
         <div onClick={()=> setShowUserLogin(false)} className='fixed top-0 bottom-0 left-0 right-0 z-30 flex item-center text-sm text-gray-600 bg-black/50'>
