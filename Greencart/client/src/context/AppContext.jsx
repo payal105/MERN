@@ -141,7 +141,9 @@ const getCartCount = () => {
                 toast.error(error.message);
             }
         }
+        if(user){
         updateCart();
+        }
     }, [cartItems])
 
     const value = { navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItems, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartCount, getCartAmount, axios, fetchProducts,fetchUser,setCartItems };
